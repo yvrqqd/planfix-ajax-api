@@ -65,11 +65,11 @@ All endpoints are served under the `/api` prefix.
 `Content-Type: application/x-www-form-urlencoded`
 
 
-| Field      | Required | Description             |
-| ---------- | -------- | ----------------------- |
-| `domain`   | yes      | Planfix instance domain |
-| `login`    | yes      | Planfix username        |
-| `password` | yes      | Planfix password        |
+| Field      | Required | Description    |
+| ---------- | -------- |----------------|
+| `domain`   | yes      | Planfix domain |
+| `login`    | yes      | Username       |
+| `password` | yes      | Password       |
 
 
 Returns `201` with `{id, login, domain}` on success.
