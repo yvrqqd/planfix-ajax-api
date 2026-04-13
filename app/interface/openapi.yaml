@@ -1,0 +1,133 @@
+openapi: "3.0.0"
+info:
+  title: Planfix AJAX API
+  version: "0.0.1"
+
+paths:
+  /clients:
+    post:
+      operationId: app.interface.http.view.create_client
+      summary: Create a new client
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/CreateClientRequest"
+      responses:
+        "201":
+          description: Client created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClientResponse"
+        "400":
+          description: Invalid input
+        "409":
+          description: Client already exists
+    get:
+      operationId: app.interface.http.view.list_clients
+      summary: List all clients
+      responses:
+        "200":
+          description: List of clients
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ClientResponse"
+
+  /clients/{client_id}:
+    delete:
+      operationId: app.interface.http.view.delete_client
+      summary: Delete a client
+      parameters:
+        - name: client_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Client deleted
+        "404":
+          description: Client not found
+
+  /run:
+    post:
+      operationId: app.interface.http.view.run_query
+      summary: Execute a Planfix AJAX query
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RunQueryRequest"
+      responses:
+        "200":
+          description: Query result
+          content:
+            application/json:
+              schema:
+                type: object
+        "400":
+          description: Invalid input
+        "404":
+          description: Client not found
+        "500":
+          description: Execution error
+
+  /ready:
+    get:
+      operationId: app.interface.http.view.ready_check
+      summary: Service health check
+      responses:
+        "200":
+          description: Service is ready
+        "404":
+          description: Service is not ready
+
+components:
+  schemas:
+    CreateClientRequest:
+      type: object
+      required:
+        - domain
+        - login
+        - password
+      properties:
+        domain:
+          type: string
+          minLength: 1
+        login:
+          type: string
+          minLength: 1
+        password:
+          type: string
+          format: password
+          minLength: 1
+    ClientResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        login:
+          type: string
+        domain:
+          type: string
+    RunQueryRequest:
+      type: object
+      required:
+        - client_id
+        - payload
+      properties:
+        client_id:
+          type: string
+          description: ID of the authenticated client
+          minLength: 1
+        payload:
+          type: object
+          description: Planfix AJAX query payload as a JSON object
+          additionalProperties: true
+          example: {}

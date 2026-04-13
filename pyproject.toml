@@ -1,0 +1,29 @@
+[project]
+name = "planfix-ajax-api"
+version = "0.0.1"
+description = "Add your description here"
+readme = "README.md"
+requires-python = "==3.14.*"
+dependencies = [
+    "aiohttp>=3.13.3",
+    "connexion[swagger-ui]>=2.14,<3",
+    "loguru>=0.7.3",
+    "playwright>=1.58.0",
+    "pydantic>=2.12.5",
+    "pydantic-settings>=2.12.0",
+]
+
+[tool.mypy]
+strict = true
+pretty = true
+
+[[tool.mypy.overrides]]
+module = ["connexion.*", "playwright.*", "loguru"]
+ignore_missing_imports = true
+
+[dependency-groups]
+dev = [
+    "flake8>=7.3.0",
+    "mypy>=1.20.0",
+    "wemake-python-styleguide>=1.6.1",
+]

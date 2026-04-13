@@ -1,0 +1,29 @@
+[flake8]
+max-line-length = 120
+max-local-variables = 8
+max-returns = 4
+max-arguments = 7
+max-imports = 12
+max-module-members = 10
+max-methods = 10
+max-string-usages = 5
+max-expressions = 13
+max-try-body-length = 12
+max-awaits = 12
+max-lines-in-finally = 4
+max-cognitive-score = 20
+
+exclude =
+    .venv,
+    .git,
+    __pycache__,
+    .idea
+
+per-file-ignores =
+    app/infrastructure/browser/browser_session.py: WPS437
+    app/infrastructure/browser/session.py: WPS210
+    app/interface/http/view.py: WPS432, WPS226
+    app/infrastructure/planfix/query_executor.py: WPS432
+    app/config/service.py: WPS432
+    app/service.py: WPS501, WPS602, WPS363, WPS231, WPS432, WPS430
+    app/utils/service_state.py: WPS430
