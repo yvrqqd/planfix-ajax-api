@@ -46,7 +46,7 @@ curl http://localhost:8000/api/ready
 http://localhost:8000/api/ui/
 ```
 
-Swagger UI
+![Swagger UI](docs/image.png)
 
 Все эндпоинты расположены под префиксом `/api`.
 

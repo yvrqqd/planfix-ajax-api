@@ -46,7 +46,7 @@ When `SWAGGER_ENABLED=true`, interactive API documentation is available at:
 http://localhost:8000/api/ui/
 ```
 
-Swagger UI
+![Swagger UI](docs/image.png)
 
 All endpoints are served under the `/api` prefix.
 
